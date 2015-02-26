@@ -44,6 +44,7 @@ var VideoPrototype = {
 		VideoCenter.setup(settings);
 		VideoCenter.play(options, settings.instanceId);
 		this.loadUpNext();
+		this.loadRecommendations();
 	},
 	videoEnded : function() {
 		nhl.logUserVideoWatched(this);
@@ -80,6 +81,36 @@ var VideoPrototype = {
 		});
 		
 	},
+	loadRecommendations: function() {
+		
+		jQuery('#recommendedVideos ul').empty();
+		
+		var random = Math.floor(Math.random() * (recoPlaylist.length - 6));
+		
+		console.log(random);
+		
+		var recoList = recoPlaylist.slice(random, (random + 5));
+		
+		for (i = 0; i < recoList.length; i++) {
+			var aVideo = recoList[i];
+			jQuery('#recommendedVideos ul').append(
+				'<li rel="' + aVideo.id + '">' +
+					'<img src="' + aVideo.canvas + '" border="0" />' +
+					'<h3>' + aVideo.title + '&nbsp;<span>(' + aVideo.duration + 's ' + aVideo.pubDate.substring(0, 10) + ')</span></h3>' + 
+				'</li>'					
+			);
+		}
+		
+		// bind click events		
+		jQuery('#recommendedVideos ul li').each(function(index) {
+			jQuery(this).on("click", function(){
+				var vidId = jQuery(this).attr('rel');
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(vidId);
+				VideoPrototype.play(aVideo);
+		    });
+		});
+		
+	},
 	videoFromPlaylistWithId: function(id) {
 		var aVideo = null;
 		for (i = 0; i < playlist.length; i++) {
@@ -89,6 +120,9 @@ var VideoPrototype = {
 			}
 		}
 		return aVideo;
+	},
+	userRecommendations: function(data) {
+		console.log(data);
 	}
 
 }
