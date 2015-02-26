@@ -95,7 +95,12 @@ body {
 	width: 178px;
 	height: 138px;
 	overflow: hidden;
-	padding: 6px 8px 0
+	padding: 6px 8px 0;
+	cursor: pointer;
+}
+
+.videoListing li:hover {
+	background-color: #363636;	
 }
 
 .videoListing li img, .videoListing li h3 {
@@ -139,4 +144,5 @@ span {
 	color: #36a2eb;
 	margin: 2px 5px 0 0;
 	white-space: nowrap;
+	line-height: 26px;
 }

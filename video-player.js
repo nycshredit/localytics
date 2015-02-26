@@ -55,7 +55,14 @@ var VideoPrototype = {
 		}
 	},
 	loadUpNext: function() {
+		console.log("title:" + VideoPrototype._currentVideo.title);
 		var indexOfCurrent = playlist.indexOf(VideoPrototype._currentVideo);
+		console.log("indexOfCurrent:" + indexOfCurrent);
+		// cheeze bag failsafe
+		if (indexOfCurrent < 0) {
+			indexOfCurrent = 0;
+		}
+		
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
 		
 		jQuery('#relatedVideos ul li').remove()
@@ -75,7 +82,7 @@ var VideoPrototype = {
 		jQuery('#relatedVideos ul li').each(function(index) {
 			jQuery(this).on("click", function(){
 				var vidId = jQuery(this).attr('rel');
-				var aVideo = VideoPrototype.videoFromPlaylistWithId(vidId);
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(playlist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
 		});
@@ -86,8 +93,6 @@ var VideoPrototype = {
 		jQuery('#recommendedVideos ul').empty();
 		
 		var random = Math.floor(Math.random() * (recoPlaylist.length - 6));
-		
-		console.log(random);
 		
 		var recoList = recoPlaylist.slice(random, (random + 5));
 		
@@ -105,13 +110,13 @@ var VideoPrototype = {
 		jQuery('#recommendedVideos ul li').each(function(index) {
 			jQuery(this).on("click", function(){
 				var vidId = jQuery(this).attr('rel');
-				var aVideo = VideoPrototype.videoFromPlaylistWithId(vidId);
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(recoPlaylist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
 		});
 		
 	},
-	videoFromPlaylistWithId: function(id) {
+	videoFromPlaylistWithId: function(playlist, id) {
 		var aVideo = null;
 		for (i = 0; i < playlist.length; i++) {
 			aVideo = playlist[i];
