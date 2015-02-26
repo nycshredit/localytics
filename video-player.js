@@ -43,6 +43,7 @@ var VideoPrototype = {
 		VideoCenter.play(options, settings.instanceId);
 	},
 	videoEnded : function() {
+		nhl.logUserVideoWatched(this.instanceId);
 		var indexOfLast = playlist
 				.indexOf(VideoPrototype._currentVideo);
 		var nextIndex = (indexOfLast + 1);
