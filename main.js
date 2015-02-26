@@ -51,7 +51,7 @@ var log = function(t){if(console){console.log(t);}};
 		}
 	}
 	
-	// VIDEO PLAY LOCAL STORAGE HELPERS
+	// VIDEO COMPLETE STORAGE HELPERS
 	nhl.videoWatchedStorageKey = 'userVideosWatched';
 	
 	nhl.logUserVideoWatched = function(videoId){
@@ -71,6 +71,16 @@ var log = function(t){if(console){console.log(t);}};
 		}
 		return value;
 	}
+	
+	// VIDEO DATE HELPERS
+	nhl.getReadableVideoDuration = function(d){
+		return moment().startOf('day').seconds(d).format('mm:ss');
+	}
+	
+	nhl.getReadableVideoPublishedDate = function(p){
+		return moment(p, 'MM/DD/YYYY HH:mm:ss a').fromNow();
+	}
+	
 	
 	$(function(){
 		log('dom-ready');

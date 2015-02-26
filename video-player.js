@@ -20,7 +20,9 @@ var VideoPrototype = {
 		jQuery('#videoContainer').empty();
 		jQuery('#details h1').html(aVideo.title);
 		jQuery('#details p').html(aVideo.desc);
-		jQuery('#details p.durationDate').html(aVideo.duration +'sec &nbsp;|&nbsp; ' + aVideo.pubDate);
+		duration = nhl.getReadableVideoDuration(aVideo.duration);
+		publishedDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
+		jQuery('#details p.durationDate').html(duration + ' &nbsp;|&nbsp; ' + publishedDate);
 		
 		jQuery('#details p.tags').empty();
 		for (i = 0; i < aVideo.tags.length; i++) {
