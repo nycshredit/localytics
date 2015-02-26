@@ -41,14 +41,32 @@ var VideoPrototype = {
 		var settings = jQuery.extend({}, vpGlobalSettings, settings);
 		VideoCenter.setup(settings);
 		VideoCenter.play(options, settings.instanceId);
+		this.loadUpNext();
 	},
 	videoEnded : function() {
-		var indexOfLast = playlist
-				.indexOf(VideoPrototype._currentVideo);
+		var indexOfLast = playlist.indexOf(VideoPrototype._currentVideo);
 		var nextIndex = (indexOfLast + 1);
 		if (nextIndex < playlist.length) {
 			VideoPrototype.play(playlist[nextIndex]);
 		}
+	},
+	loadUpNext: function() {
+		var indexOfCurrent = playlist.indexOf(VideoPrototype._currentVideo);
+		console.log('load everything after index ' + indexOfCurrent);
+	
+		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
+		
+		jQuery('#relatedVideos ul li').remove()
+		for (i = 0; i < upNextArray.length; i++) {
+			var aVideo = upNextArray[i];
+			jQuery('#relatedVideos ul').append(
+				'<li>' +
+					'<img src="' + aVideo.canvas + '" border="0" />' +
+					'<h3>' + aVideo.title + '<span>(' + aVideo.duration + 's ' + aVideo.pubDate + ')</span></h3>' + 
+				'</li>'					
+			);
+		}
+		
 	}
 
 }
