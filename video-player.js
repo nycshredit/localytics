@@ -58,13 +58,32 @@ var VideoPrototype = {
 		for (i = 0; i < upNextArray.length; i++) {
 			var aVideo = upNextArray[i];
 			jQuery('#relatedVideos ul').append(
-				'<li>' +
+				'<li rel="' + aVideo.id + '">' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
 					'<h3>' + aVideo.title + '&nbsp;<span>(' + aVideo.duration + 's ' + aVideo.pubDate.substring(0, 10) + ')</span></h3>' + 
 				'</li>'					
 			);
 		}
 		
+		// bind click events		
+		jQuery('#relatedVideos ul li').each(function(index) {
+			jQuery(this).on("click", function(){
+				var vidId = jQuery(this).attr('rel');
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(vidId);
+				VideoPrototype.play(aVideo);
+		    });
+		});
+		
+	},
+	videoFromPlaylistWithId: function(id) {
+		var aVideo = null;
+		for (i = 0; i < playlist.length; i++) {
+			aVideo = playlist[i];
+			if (aVideo.id == id) {
+				break;				
+			}
+		}
+		return aVideo;
 	}
 
 }
