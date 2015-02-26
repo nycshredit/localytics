@@ -55,9 +55,19 @@ var VideoPrototype = {
 		}
 	},
 	loadUpNext: function() {
+		console.log("title:" + VideoPrototype._currentVideo.title);
 		var indexOfCurrent = playlist.indexOf(VideoPrototype._currentVideo);
+		console.log("indexOfCurrent:" + indexOfCurrent);
+		// cheeze bag failsafe
+		if (indexOfCurrent < 0) {
+			indexOfCurrent = 0;
+		}
+		
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
 		
+		this.renderVideoList('relatedVideos', upNextArray);
+		
+		/*
 		jQuery('#relatedVideos ul li').remove()
 		for (i = 0; i < upNextArray.length; i++) {
 			var aVideo = upNextArray[i];
@@ -75,10 +85,10 @@ var VideoPrototype = {
 		jQuery('#relatedVideos ul li').each(function(index) {
 			jQuery(this).on("click", function(){
 				var vidId = jQuery(this).attr('rel');
-				var aVideo = VideoPrototype.videoFromPlaylistWithId(vidId);
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(playlist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
-		});
+		});*/
 		
 	},
 	loadRecommendations: function() {
@@ -87,15 +97,17 @@ var VideoPrototype = {
 		
 		var random = Math.floor(Math.random() * (recoPlaylist.length - 6));
 		
-		//console.log(random);
-		
 		var recoList = recoPlaylist.slice(random, (random + 5));
 		
-		for (i = 0; i < recoList.length; i++) {
-			var aVideo = recoList[i];
+		this.renderVideoList('recommendedVideos', recoList);		
+	},
+	renderVideoList: function(containerId, aPlaylist) {
+		
+		for (i = 0; i < aPlaylist.length; i++) {
+			var aVideo = aPlaylist[i];
 			pubDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
 			duration = nhl.getReadableVideoDuration(aVideo.duration);
-			jQuery('#recommendedVideos ul').append(
+			jQuery('#' + containerId + ' ul').append(
 				'<li rel="' + aVideo.id + '">' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
 					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' ' + pubDate + ')</span></h3>' + 
@@ -103,17 +115,17 @@ var VideoPrototype = {
 			);
 		}
 		
-		// bind click events		
-		jQuery('#recommendedVideos ul li').each(function(index) {
+		// bind click events	
+		jQuery('#' + containerId + ' ul li').unbind();
+		jQuery('#' + containerId + ' ul li').each(function(index) {
 			jQuery(this).on("click", function(){
 				var vidId = jQuery(this).attr('rel');
-				var aVideo = VideoPrototype.videoFromPlaylistWithId(vidId);
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(aPlaylist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
 		});
-		
 	},
-	videoFromPlaylistWithId: function(id) {
+	videoFromPlaylistWithId: function(playlist, id) {
 		var aVideo = null;
 		for (i = 0; i < playlist.length; i++) {
 			aVideo = playlist[i];
