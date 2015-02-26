@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+	<title>Localytics Prototype</title>
+
+	<script src="http://1.cdn.nhle.com/projects/_lib/jquery/jquery-1.10.1.min.js?v=8.19" type="text/javascript"></script>
+	<script type="text/javascript" src="http://e1.cdnl3.neulion.com/nhlvc/player/videocenter/player/scripts/videocenter.js?v=20150224"></script>
+	
+	<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+	
+	<script src="video-playlist.js" type="text/javascript"></script>
+	<script src="video-player.js" type="text/javascript"></script>
+	<link href="video-player.css" rel="stylesheet" type='text/css'>
+
+</head>
+
+<body>
+
+	<div id="pageWrapper">
+	
+		<div id="pageBody">
+		
+			<ul class="navi">
+				<li style="width: 170px">VIDEOCENTER HOME</li>
+				<li style="width: 116px">HIGHLIGHTS</li>
+				<li style="width: 133px">NHL NETWORK</li>
+				<li style="width: 142px">SPECIAL EVENTS</li>
+				<li style="width: 90px">HISTORY</li>
+				<li>MY NHL</li>
+			</ul>
+	
+			<div id="featured" class="section">
+				<div id="videoContainer" style="float: left; width: 760px; height: 462px; background-color: #000"><!-- ipVidCont --></div>
+				
+				<div id="relatedVideos" class="videoListing">
+					<h4>RELATED</h4>
+					
+					<ul>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+					</ul>
+				
+				</div>
+				
+			</div>
+			
+			<div style="float: left; width: 775px;">
+				<div id="details" class="section">
+					<p class="durationDate"></p>
+					<h1></h1>
+					<p class="teaser"></p>
+					<p class="tags"></p>
+				</div>
+				
+				<div id="comments" class="section">
+		
+				</div>
+			</div>
+	
+			<div class="section">
+				<div id="recommendedVideos" class="videoListing">
+					<h4>RECOMMENDED</h4>
+					
+					<ul>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+						<li>
+							<img src="http://nhl.cdnllnwnl.neulion.net/u/www/thumbs/2015/02/21/759192_eb.jpg" border="0" />
+							<h3>Palmieri beats Hiller on a juicy rebound <span>(46s 02/21/2015)</span></h3>
+						</li>
+					</ul>
+				
+				</div>	
+			</div>
+
+			<script>
+				jQuery(document).ready(function() {
+					VideoPrototype.play(playlist[0]);
+				});
+			</script>
+		
+		</div>
+	
+	</div>
+
+
+</body>
+</html>

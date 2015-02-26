@@ -1,0 +1,142 @@
+body {
+    font-family: 'Sintony', sans-serif;
+    font-weight: 400;
+    background-color: #121212;
+    color: #d2d2d2;
+}
+
+#pageWrapper {
+    margin: auto;
+    overflow: visible;
+    width: 990px;
+}
+
+#pageBody {
+    background-color: #000000;
+    float: left;
+    overflow: hidden;
+    padding: 5px 0;
+    width: 990px;
+    margin-top: 15px;
+    border-top: 4px solid #36a2eb;
+}
+
+#pageBody ul.navi {
+	float: left;
+	width: 950px;
+	margin: 12px 20px 20px 20px;
+	list-style: none; 
+	padding: 0px;
+}
+
+#pageBody ul.navi li {
+	float: left;
+	margin: 4px 0;
+	font-size: 14px;
+}
+
+#pageBody .section {
+	float: left;
+	border: 5px solid #282627;
+	background-color: #2c2a2b;
+	margin-bottom: 10px;
+}
+
+#featured { 
+	float: left;
+	width: 950px;
+	margin: 0 0 0 15px;
+	background-color: #313131;
+}
+#details p.durationDate { 
+	font-size: 12px;
+}
+#details p.tags { 
+	font-size: 12px;
+	margin-top: 10px;
+}
+#details, #comments {
+	float: left;
+	width: 720px;
+	margin: 0 0 8px 15px;
+	padding: 10px;
+}
+
+#comments {
+	height: 552px;	
+}
+
+#relatedVideos {
+	height: 462px;
+	overflow: hidden;
+}
+.videoListing {
+	float: left;
+	color: #ccc;
+	width: 190px;
+	margin: 0;
+}
+.videoListing h4 {
+	float: left;
+	width: 182px;
+	background-color: #595959;
+	padding: 4px 0 4px 8px;
+	margin: 0;
+}
+.videoListing ul {
+	float: left;
+	margin: 0;
+	padding: 0;
+	list-style: none; 
+	width: 182px;
+}
+.videoListing li {
+	float: left;
+	width: 178px;
+	height: 138px;
+	overflow: hidden;
+	padding: 6px 8px 0
+}
+
+.videoListing li img, .videoListing li h3 {
+	float: left;
+	width: 178px;
+}
+
+.videoListing li h3 {
+	float: left;
+	padding: 0px;
+	margin: 2px 0px;
+	font-size: 12px;
+	line-height: 13px;
+}
+.videoListing li span {
+	font-size: 10px;
+	color: #999;
+}
+
+h1 {
+	float: left;
+	width: 100%;
+	margin: 0 0 4px 0;
+	font-size: 28px;
+}
+p {
+	float: left;
+	margin: 0 0 4px 0;
+	font-size: 16px;
+}
+
+span {
+	font-size: 12px;
+}
+
+#details p.tags a:link {
+	background-color: #000;
+	border-radius: 4px;
+	padding: 3px 6px;
+	text-decoration: none;
+	color: #36a2eb;
+	margin: 2px 5px 0 0;
+	white-space: nowrap;
+}
