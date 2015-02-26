@@ -52,8 +52,6 @@ var VideoPrototype = {
 	},
 	loadUpNext: function() {
 		var indexOfCurrent = playlist.indexOf(VideoPrototype._currentVideo);
-		console.log('load everything after index ' + indexOfCurrent);
-	
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
 		
 		jQuery('#relatedVideos ul li').remove()
@@ -62,7 +60,7 @@ var VideoPrototype = {
 			jQuery('#relatedVideos ul').append(
 				'<li>' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
-					'<h3>' + aVideo.title + '<span>(' + aVideo.duration + 's ' + aVideo.pubDate + ')</span></h3>' + 
+					'<h3>' + aVideo.title + '&nbsp;<span>(' + aVideo.duration + 's ' + aVideo.pubDate.substring(0, 10) + ')</span></h3>' + 
 				'</li>'					
 			);
 		}
