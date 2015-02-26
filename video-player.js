@@ -41,6 +41,7 @@ var VideoPrototype = {
 			autostart : true
 		};
 		var settings = jQuery.extend({}, vpGlobalSettings, settings);
+		nhl.reWriteFacebookComments(aVideo.id);
 		VideoCenter.setup(settings);
 		VideoCenter.play(options, settings.instanceId);
 		this.loadUpNext();

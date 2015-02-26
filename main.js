@@ -87,6 +87,12 @@ var log = function(t){if(console){console.log(t);}};
 		return moment(p, 'MM/DD/YYYY hh:mm:ss a').fromNow();
 	}
 	
+	nhl.commentElement = "#comments";
+	nhl.reWriteFacebookComments = function(videoId){
+		// do nothing for now.
+		//$(nhl.commentElement).html('<div class="fb-comments" data-href="http://localhost/#videoId-'+videoId+'" data-width="716" data-numposts="5" data-colorscheme="dark"></div><script>jQuery(function(){FB.XFBML.parse();});</script>');
+	}
+	
 	
 	$(function(){
 		log('dom-ready');
