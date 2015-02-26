@@ -51,12 +51,17 @@ var log = function(t){if(console){console.log(t);}};
 		}
 	}
 	
-	// VIDEO COMPLETE STORAGE HELPERS
+	// VIDEO COMPLETE HELPERS
 	nhl.videoWatchedStorageKey = 'userVideosWatched';
 	
-	nhl.logUserVideoWatched = function(videoId){
-		if (videoId) {
-			nhl.localStoreAppendKeyValue(nhl.videoWatchedStorageKey,videoId);
+	nhl.logUserVideoWatched = function(video){
+		if (video) {
+			if ( video.instanceId /*&& video.title && video.duration*/ ){
+				log('adding to watched array');
+				nhl.localStoreAppendKeyValue(nhl.videoWatchedStorageKey,video.instanceId);
+				
+				ll('tagEvent', 'Video Complete', {'Title': video.title/*, 'id': video.instanceId, 'duration': video.duration*/});
+			}
 		}
 	}
 	
@@ -67,6 +72,9 @@ var log = function(t){if(console){console.log(t);}};
 				value = value.split(',').map(function(i) {
    					return parseInt(i, 10);
 			 	});
+			} else if ( value ){
+				// create array
+				value = [parseInt(value)];
 			}
 		}
 		return value;

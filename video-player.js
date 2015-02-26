@@ -47,7 +47,7 @@ var VideoPrototype = {
 		this.loadRecommendations();
 	},
 	videoEnded : function() {
-		nhl.logUserVideoWatched(this.instanceId);
+		nhl.logUserVideoWatched(this);
 		var indexOfLast = playlist.indexOf(VideoPrototype._currentVideo);
 		var nextIndex = (indexOfLast + 1);
 		if (nextIndex < playlist.length) {
@@ -98,10 +98,12 @@ var VideoPrototype = {
 		
 		for (i = 0; i < recoList.length; i++) {
 			var aVideo = recoList[i];
+			pubDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
+			duration = nhl.getReadableVideoDuration(aVideo.duration);
 			jQuery('#recommendedVideos ul').append(
 				'<li rel="' + aVideo.id + '">' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
-					'<h3>' + aVideo.title + '&nbsp;<span>(' + aVideo.duration + 's ' + aVideo.pubDate.substring(0, 10) + ')</span></h3>' + 
+					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' ' + pubDate + ')</span></h3>' + 
 				'</li>'					
 			);
 		}
