@@ -78,7 +78,7 @@ var log = function(t){if(console){console.log(t);}};
 	}
 	
 	nhl.getReadableVideoPublishedDate = function(p){
-		return moment(p, 'MM/DD/YYYY HH:mm:ss a').fromNow();
+		return moment(p, 'MM/DD/YYYY hh:mm:ss a').fromNow();
 	}
 	
 	
