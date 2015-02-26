@@ -62,35 +62,32 @@ var VideoPrototype = {
 		this.renderVideoList('relatedVideos', upNextArray);
 		
 	},
-	loadRecommendations: function() {
-		
-		if (!VideoPrototype._currentVideo.tags) return;
-		
+	loadRecommendations : function() {
+
+		if (!VideoPrototype._currentVideo.tags)
+			return;
+
 		var videoTags = VideoPrototype._currentVideo.tags;
-		
+
 		var matches = [];
-		
+
 		jQuery.each(recoPlaylist, function(i, aVideo) {
-		  if (aVideo.tags) {
-		    for (i = 0; i < aVideo.tags.length; i++) {
-		    	var aTag = aVideo.tags[i];
-			    if (videoTags.indexOf(aTag) >= 0) {
-			        matches[matches.length] = aVideo;
-			        break;
-			    }
-			 }   
-		  }
+			if (aVideo.tags && aVideo.id != VideoPrototype._currentVideo.id) {
+				for (i = 0; i < aVideo.tags.length; i++) {
+					var aTag = aVideo.tags[i];
+					if (videoTags.indexOf(aTag) >= 0) {
+						matches[matches.length] = aVideo;
+						break;
+					}
+				}
+			}
 		});
-		
-		  if (matches.length > 5) {
-			  matches = matches.slice(0,5);
-		  }
-		
-		//var random = Math.floor(Math.random() * (recoPlaylist.length - 6));
-		
-		//var recoList = recoPlaylist.slice(random, (random + 5));
-		
-		this.renderVideoList('recommendedVideos', matches);		
+
+		if (matches.length > 5) {
+			matches = matches.slice(0, 5);
+		}
+
+		this.renderVideoList('recommendedVideos', matches);
 	},
 	renderVideoList: function(containerId, aPlaylist) {
 		
