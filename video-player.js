@@ -60,10 +60,12 @@ var VideoPrototype = {
 		jQuery('#relatedVideos ul li').remove()
 		for (i = 0; i < upNextArray.length; i++) {
 			var aVideo = upNextArray[i];
+			pubDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
+			duration = nhl.getReadableVideoDuration(aVideo.duration);
 			jQuery('#relatedVideos ul').append(
 				'<li rel="' + aVideo.id + '">' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
-					'<h3>' + aVideo.title + '&nbsp;<span>(' + aVideo.duration + 's ' + aVideo.pubDate.substring(0, 10) + ')</span></h3>' + 
+					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' | ' + pubDate + ')</span></h3>' + 
 				'</li>'					
 			);
 		}
