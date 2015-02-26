@@ -65,6 +65,9 @@ var VideoPrototype = {
 		
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
 		
+		this.renderVideoList('relatedVideos', upNextArray);
+		
+		/*
 		jQuery('#relatedVideos ul li').remove()
 		for (i = 0; i < upNextArray.length; i++) {
 			var aVideo = upNextArray[i];
@@ -85,7 +88,7 @@ var VideoPrototype = {
 				var aVideo = VideoPrototype.videoFromPlaylistWithId(playlist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
-		});
+		});*/
 		
 	},
 	loadRecommendations: function() {
@@ -96,11 +99,15 @@ var VideoPrototype = {
 		
 		var recoList = recoPlaylist.slice(random, (random + 5));
 		
-		for (i = 0; i < recoList.length; i++) {
-			var aVideo = recoList[i];
+		this.renderVideoList('recommendedVideos', recoList);		
+	},
+	renderVideoList: function(containerId, aPlaylist) {
+		
+		for (i = 0; i < aPlaylist.length; i++) {
+			var aVideo = aPlaylist[i];
 			pubDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
 			duration = nhl.getReadableVideoDuration(aVideo.duration);
-			jQuery('#recommendedVideos ul').append(
+			jQuery('#' + containerId + ' ul').append(
 				'<li rel="' + aVideo.id + '">' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
 					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' ' + pubDate + ')</span></h3>' + 
@@ -108,15 +115,15 @@ var VideoPrototype = {
 			);
 		}
 		
-		// bind click events		
-		jQuery('#recommendedVideos ul li').each(function(index) {
+		// bind click events	
+		jQuery('#' + containerId + ' ul li').unbind();
+		jQuery('#' + containerId + ' ul li').each(function(index) {
 			jQuery(this).on("click", function(){
 				var vidId = jQuery(this).attr('rel');
-				var aVideo = VideoPrototype.videoFromPlaylistWithId(recoPlaylist, vidId);
+				var aVideo = VideoPrototype.videoFromPlaylistWithId(aPlaylist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
 		});
-		
 	},
 	videoFromPlaylistWithId: function(playlist, id) {
 		var aVideo = null;
