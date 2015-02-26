@@ -56,30 +56,43 @@ var VideoPrototype = {
 		}
 	},
 	loadUpNext: function() {
-		console.log("title:" + VideoPrototype._currentVideo.title);
 		var indexOfCurrent = playlist.indexOf(VideoPrototype._currentVideo);
-		console.log("indexOfCurrent:" + indexOfCurrent);
-		// cheeze bag failsafe
-		if (indexOfCurrent < 0) {
-			indexOfCurrent = 0;
-		}
 		
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
 		
 		this.renderVideoList('relatedVideos', upNextArray);
 		
 	},
-	loadRecommendations: function() {
-		
-		jQuery('#recommendedVideos ul').empty();
-		
-		var random = Math.floor(Math.random() * (recoPlaylist.length - 6));
-		
-		var recoList = recoPlaylist.slice(random, (random + 5));
-		
-		this.renderVideoList('recommendedVideos', recoList);		
+	loadRecommendations : function() {
+
+		if (!VideoPrototype._currentVideo.tags)
+			return;
+
+		var videoTags = VideoPrototype._currentVideo.tags;
+
+		var matches = [];
+
+		jQuery.each(recoPlaylist, function(i, aVideo) {
+			if (aVideo.tags && aVideo.id != VideoPrototype._currentVideo.id) {
+				for (i = 0; i < aVideo.tags.length; i++) {
+					var aTag = aVideo.tags[i];
+					if (videoTags.indexOf(aTag) >= 0) {
+						matches[matches.length] = aVideo;
+						break;
+					}
+				}
+			}
+		});
+
+		if (matches.length > 5) {
+			matches = matches.slice(0, 5);
+		}
+
+		this.renderVideoList('recommendedVideos', matches);
 	},
 	renderVideoList: function(containerId, aPlaylist) {
+		
+		jQuery('#' + containerId + ' ul').empty();
 		
 		for (i = 0; i < aPlaylist.length; i++) {
 			var aVideo = aPlaylist[i];
