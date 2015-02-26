@@ -16,6 +16,26 @@
 	
 	<script src="video-playlist.js" type="text/javascript"></script>
 	<script src="video-player.js" type="text/javascript"></script>
+	
+	<script>
+	    +function(l,y,t,i,c,s) {
+	        l['LocalyticsGlobal'] = i;
+	        l[i] = function() { (l[i].q = l[i].q || []).push(arguments) };
+	        l[i].t = +new Date;
+	        (s = y.createElement(t)).type = 'text/javascript';
+	        s.src = '//web.localytics.com/v3/localytics.min.js';
+	        (c = y.getElementsByTagName(t)[0]).parentNode.insertBefore(s, c);
+        
+	        ll('init', '29583d4f8dcef6bae814897-0f09274c-bde2-11e4-ad7b-009c5fda0a25', {loginStatus: "free", domain: "nhl.com"});
+        
+	    }(window, document, 'script', 'll');
+		ll('tagScreen', 'Video View');
+		// eventually we should do this
+		/*ll('setCustomerID', '12345678');
+		ll('setCustomerEmail', 'mohana@sample.com');
+		ll('setCustomerName', 'Mohana');*/
+	</script>
+	
 	<link href="video-player.css" rel="stylesheet" type='text/css'>
 
 </head>

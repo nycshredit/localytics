@@ -46,7 +46,7 @@ var VideoPrototype = {
 		this.loadUpNext();
 	},
 	videoEnded : function() {
-		nhl.logUserVideoWatched(this.instanceId);
+		nhl.logUserVideoWatched(this);
 		var indexOfLast = playlist.indexOf(VideoPrototype._currentVideo);
 		var nextIndex = (indexOfLast + 1);
 		if (nextIndex < playlist.length) {
