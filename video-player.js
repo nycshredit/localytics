@@ -87,7 +87,7 @@ var VideoPrototype = {
 		
 		var random = Math.floor(Math.random() * (recoPlaylist.length - 6));
 		
-		console.log(random);
+		//console.log(random);
 		
 		var recoList = recoPlaylist.slice(random, (random + 5));
 		

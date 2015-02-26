@@ -57,9 +57,7 @@ var log = function(t){if(console){console.log(t);}};
 	nhl.logUserVideoWatched = function(video){
 		if (video) {
 			if ( video.instanceId /*&& video.title && video.duration*/ ){
-				log('adding to watched array');
 				nhl.localStoreAppendKeyValue(nhl.videoWatchedStorageKey,video.instanceId);
-				
 				ll('tagEvent', 'Video Complete', {'Title': video.title/*, 'id': video.instanceId, 'duration': video.duration*/});
 			}
 		}
@@ -82,7 +80,7 @@ var log = function(t){if(console){console.log(t);}};
 	
 	// VIDEO DATE HELPERS
 	nhl.getReadableVideoDuration = function(d){
-		return moment().startOf('day').seconds(d).format('mm:ss');
+		return moment().startOf('day').seconds(d).format('m:ss');
 	}
 	
 	nhl.getReadableVideoPublishedDate = function(p){
