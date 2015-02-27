@@ -19,7 +19,7 @@ echo "After decryption: ".$dec."<br/>";
 */
 
 // test 3
-/*
+
 include 'AES.php';
 
 $inputTextEnc = "IG87EISz9fsKFnQYQrni+A==";
@@ -35,8 +35,8 @@ $dec=$aes->decrypt();
 
 echo "After encryption: ".$enc." >>> does this match? <<< ".$inputTextEnc."<br/>";
 
-echo "After decryption: ".$dec."<br/>";
-*/
+echo "After decryption: ".$dec."<br/><br/>";
+
 
 
 // test 2
@@ -66,7 +66,8 @@ function fnEncrypt($sValue, $sSecretKey)
                 MCRYPT_MODE_ECB, 
                 mcrypt_create_iv(
                     mcrypt_get_iv_size(
-                        MCRYPT_RIJNDAEL_256, 
+                        MCRYPT_RIJNDAEL_128,
+						//MCRYPT_RIJNDAEL_256, 
                         MCRYPT_MODE_ECB
                     ), 
                     MCRYPT_RAND)
@@ -86,7 +87,8 @@ function fnDecrypt($sValue, $sSecretKey)
             MCRYPT_MODE_ECB,
             mcrypt_create_iv(
                 mcrypt_get_iv_size(
-                    MCRYPT_RIJNDAEL_256,
+                    MCRYPT_RIJNDAEL_128,
+					//MCRYPT_RIJNDAEL_256,
                     MCRYPT_MODE_ECB
                 ), 
                 MCRYPT_RAND

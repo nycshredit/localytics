@@ -54,11 +54,14 @@ var log = function(t){if(console){console.log(t);}};
 	// VIDEO COMPLETE HELPERS
 	nhl.videoWatchedStorageKey = 'userVideosWatched';
 	
+	nhl.logUserVideoStarted = function(video){
+		
+	}
+	
 	nhl.logUserVideoWatched = function(video){
 		if (video) {
 			if ( video.instanceId /*&& video.title && video.duration*/ ){
 				nhl.localStoreAppendKeyValue(nhl.videoWatchedStorageKey,video.instanceId);
-				ll('tagEvent', 'Video Complete', {'Title': video.title/*, 'id': video.instanceId, 'duration': video.duration*/});
 			}
 		}
 	}
