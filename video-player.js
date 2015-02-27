@@ -50,7 +50,6 @@ var VideoPrototype = {
 		// localytics tracking
 		// @todo
 		// we need some way to detemine what type of play this was. possible values -- auto, first, recoLocalytics, recoByTag, upNext
-		log('tracking localytics start');
 		ll('tagEvent', 'Video Start', {'id': aVideo.id, 'Title': aVideo.title, 'duration': aVideo.duration, 'type': 'auto'});
 		
 	},
@@ -60,7 +59,7 @@ var VideoPrototype = {
 		nhl.logUserVideoWatched(this);
 		// @todo
 		// this data is not passed to us from the obj that comes from the NL video player callback. can we get it?
-		ll('tagEvent', 'Video Complete', {'id': video.instanceId/*'Title': this.title, 'duration': video.duration*/}); 
+		ll('tagEvent', 'Video Complete', {'id': this.instanceId/*'Title': this.title, 'duration': video.duration*/}); 
 		
 		var indexOfLast = playlist.indexOf(VideoPrototype._currentVideo);
 		var nextIndex = (indexOfLast + 1);
