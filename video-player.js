@@ -1,16 +1,19 @@
 
 var vpGlobalSettings = {
-		"site": "www", 
-	    "lang": "en", 
-	    "playerType": "n2", 
-	    "pageName": "nhl:en:news:news", 
+		"site": "www",
+	    "lang": "en",
+	    "playerType": "n2",
+	    "pageName": "nhl:en:news:news",
 	    "section": "news",
-	    "section2": "news", 
-	    "hierarchy": "news,playersafety", 
+	    "section2": "news",
+	    "hierarchy": "news,playersafety",
 	    "videoChannel": "inline article",
 	    "noTealium": true,
 		"fwSectionId": "nhl_us_nhl_videocenter_playersafetydecisions",
-		"skipAdTime": 5
+		"skipAdTime": 5,
+        "localytics_key": "a41aa16989eea0a42e467d4-41b21b40-0092-11e4-4762-00a426b17dd8",
+        "localytics_secret": "e4d66fde9b8be875399e583-41b21f24-0092-11e4-4762-00a426b17dd8",
+        "profilesApiRoot": "https://api.localytics.com/profile/v1/profiles/"
 }
 
 var VideoPrototype = {
@@ -23,7 +26,7 @@ var VideoPrototype = {
 		duration = nhl.getReadableVideoDuration(aVideo.duration);
 		publishedDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
 		jQuery('#details p.durationDate').html(duration + ' &nbsp;|&nbsp; ' + publishedDate);
-		
+
 		jQuery('#details p.tags').empty();
 		for (i = 0; i < aVideo.tags.length; i++) {
 			var aTag = aVideo.tags[i];
@@ -69,11 +72,11 @@ var VideoPrototype = {
 	},
 	loadUpNext: function() {
 		var indexOfCurrent = playlist.indexOf(VideoPrototype._currentVideo);
-		
+
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
-		
+
 		this.renderVideoList('relatedVideos', upNextArray);
-		
+
 	},
 	loadRecommendations : function() {
 
@@ -103,9 +106,9 @@ var VideoPrototype = {
 		this.renderVideoList('recommendedVideos', matches);
 	},
 	renderVideoList: function(containerId, aPlaylist) {
-		
+
 		jQuery('#' + containerId + ' ul').empty();
-		
+
 		for (i = 0; i < aPlaylist.length; i++) {
 			var aVideo = aPlaylist[i];
 			pubDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
@@ -113,12 +116,12 @@ var VideoPrototype = {
 			jQuery('#' + containerId + ' ul').append(
 				'<li rel="' + aVideo.id + '">' +
 					'<img src="' + aVideo.canvas + '" border="0" />' +
-					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' ' + pubDate + ')</span></h3>' + 
-				'</li>'					
+					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' ' + pubDate + ')</span></h3>' +
+				'</li>'
 			);
 		}
-		
-		// bind click events	
+
+		// bind click events
 		jQuery('#' + containerId + ' ul li').unbind();
 		jQuery('#' + containerId + ' ul li').each(function(index) {
 			jQuery(this).on("click", function(){
@@ -133,13 +136,15 @@ var VideoPrototype = {
 		for (i = 0; i < playlist.length; i++) {
 			aVideo = playlist[i];
 			if (aVideo.id == id) {
-				break;				
+				break;
 			}
 		}
 		return aVideo;
 	},
 	userRecommendations: function(data) {
-		console.log(data);
+        //return Username and Recommended videos from Localytics Profiles API for given customer ID
+        console.log(data.attributes['Username']);
+        console.log(data.attributes['Recommended Videos'])
 	}
 
 }
