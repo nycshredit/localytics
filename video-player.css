@@ -47,12 +47,90 @@ body {
 	margin-bottom: 10px;
 }
 
-#featured { 
+#pageBody .main, #pageBody .rail {
 	float: left;
-	width: 950px;
-	margin: 0 0 0 15px;
-	background-color: #313131;
+	padding: 0;
+	margin: 0;
 }
+#pageBody .main {
+	width: 780px;
+}
+#pageBody .rail {
+	width: 200px;
+}
+#pageBody #videoContainer {
+	float: left; 
+	width: 760px; 
+	height: 462px; 
+	border: 5px solid #282627; 
+	margin-bottom: 10px;
+}
+
+#pageBody h3 {
+    background-color: #595959;
+    float: left;
+    margin: 0 0 6px 0;
+    padding: 4px 0 4px 8px;
+    width: 192px;
+    clear: both;
+}
+#pageBody .thumbContainer {
+	position: relative; 
+	width: 200px; 
+	height: 113px; 
+	overflow: hidden; 
+	margin-bottom: 10px;
+	clear: both;
+	cursor: pointer;
+}
+#pageBody .thumbTray {
+	position: absolute; 
+	width: 200px;
+	bottom: 0; 
+	left: 0; 
+	background-color: #121212; 
+	opacity:0.8;
+	margin-bottom: -20px;
+}
+#pageBody .thumbContainer .thumb {
+	position: absolute; top: 0; left: 0; width: 200px
+}
+#pageBody .thumbTray h4 {
+	font-size: 12px;
+	line-height: 16px;
+	margin: 4px 0 6px 0;
+	padding: 0 5px;
+}
+#pageBody .thumbTray p {
+	font-size: 10px;
+	line-height: 12px;
+	padding: 0 5px 2px 5px;
+}
+#pageBody .thumbTray .share {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+#pageBody .thumbTray .share img {
+	height: 15px;
+	width: 15px;	
+	margin-right: 6px;
+	cursor: pointer;
+}
+
+#details div.share {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#details div.share img {
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	margin-left: 8px;
+}
+
 #details p.durationDate { 
 	font-size: 12px;
 }
@@ -62,67 +140,9 @@ body {
 }
 #details, #comments {
 	float: left;
-	width: 720px;
-	margin: 0 0 8px 15px;
+	width: 739px;
+	margin: 0 0 10px 0;
 	padding: 10px;
-}
-
-#comments {
-	height: 552px;	
-}
-
-#relatedVideos {
-	height: 462px;
-	overflow: hidden;
-}
-.videoListing {
-	float: left;
-	color: #ccc;
-	width: 190px;
-	margin: 0;
-}
-.videoListing h4 {
-	float: left;
-	width: 182px;
-	background-color: #595959;
-	padding: 4px 0 4px 8px;
-	margin: 0;
-}
-.videoListing ul {
-	float: left;
-	margin: 0;
-	padding: 0;
-	list-style: none; 
-	width: 182px;
-}
-.videoListing li {
-	float: left;
-	width: 178px;
-	height: 138px;
-	overflow: hidden;
-	padding: 6px 8px 0;
-	cursor: pointer;
-}
-
-.videoListing li:hover {
-	background-color: #363636;	
-}
-
-.videoListing li img, .videoListing li h3 {
-	float: left;
-	width: 178px;
-}
-
-.videoListing li h3 {
-	float: left;
-	padding: 0px;
-	margin: 2px 0px;
-	font-size: 12px;
-	line-height: 13px;
-}
-.videoListing li span {
-	font-size: 10px;
-	color: #999;
 }
 
 h1 {

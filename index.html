@@ -37,6 +37,7 @@
 		ll('setCustomerName', 'Mohana');*/
 	</script>
 	
+	<link href="http://1.cdn.nhle.com/projects/ice3-ui/com.nhl.ice3.ui.t5.components/GlobalPageImports/src/css/reset.css" rel="stylesheet" type="text/css">
 	<link href="video-player.css" rel="stylesheet" type='text/css'>
 
 </head>
@@ -66,10 +67,8 @@
 		<div id="pageBody">
 		
 			<div id="masthead">
-				
 				<i class="icon_localytics-solid">&nbsp;</i>
 				<img src="nhl-shield-mgc.svg" style="float: right; margin-right: 15px; height: 65px" />
-				
 			</div>
 		
 			<ul class="navi">
@@ -80,23 +79,12 @@
 				<li style="width: 90px">HISTORY</li>
 				<li>MY NHL</li>
 			</ul>
-	
-			<div id="featured" class="section">
-				<div id="videoContainer" style="float: left; width: 760px; height: 462px; background-color: #000"><!-- ipVidCont --></div>
-				
-				<div id="relatedVideos" class="videoListing">
-					<h4>UP NEXT</h4>
-					
-					<ul>
-
-					</ul>
-				
-				</div>
-				
-			</div>
 			
-			<div style="float: left; width: 775px;">
+			<div class="main">
+				<div id="videoContainer"><!-- ipVidCont --></div>
+				
 				<div id="details" class="section">
+					<div style="position: relative"><div title="Share this video" class="share"><img src="share-icon.png" /><img title="Add to my favorites" src="favorite-icon.png" /></div></div>
 					<p class="durationDate"></p>
 					<h1></h1>
 					<p class="teaser"></p>
@@ -104,25 +92,27 @@
 				</div>
 				
 				<div id="comments" class="section">
-					<div class="fb-comments" data-href="http://localhost/#videoId-" data-width="716" data-numposts="5" data-colorscheme="dark"></div>
+					<div class="fb-comments" data-href="http://www.nhl.com/prototype/localytics/index.html" data-width="740" data-numposts="5" data-colorscheme="dark"></div>
 				</div>
-			</div>
-	
-			<div class="section">
-				<div id="recommendedVideos" class="videoListing">
-					<h4>RECOMMENDED</h4>
-					
-					<ul>
-
-					</ul>
 				
-				</div>	
+			</div>
+			
+			<div class="rail section">
+				<h3>UP NEXT</h3>
+				<ul class="relatedVideos" style="width: 100%; height: 1105px; overflow: hidden;">
+				
+				</ul>
+				<h3>RECOMMENDED</h3>
+				<ul class="recommendedVideos">
+				
+				</ul>
 			</div>
 
 			<script>
 				jQuery(document).ready(function() {
 					VideoPrototype.play(playlist[0]);
 				});
+			
 			</script>
 		
 		</div>

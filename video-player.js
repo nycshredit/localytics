@@ -72,7 +72,7 @@ var VideoPrototype = {
 		
 		var upNextArray = playlist.slice(indexOfCurrent + 1, playlist.length);
 		
-		this.renderVideoList('relatedVideos', upNextArray);
+		this.renderVideoList('.relatedVideos', upNextArray);
 		
 	},
 	loadRecommendations : function() {
@@ -100,33 +100,47 @@ var VideoPrototype = {
 			matches = matches.slice(0, 5);
 		}
 
-		this.renderVideoList('recommendedVideos', matches);
+		this.renderVideoList('.recommendedVideos', matches);
 	},
 	renderVideoList: function(containerId, aPlaylist) {
 		
-		jQuery('#' + containerId + ' ul').empty();
+		jQuery(containerId).empty();
 		
 		for (i = 0; i < aPlaylist.length; i++) {
 			var aVideo = aPlaylist[i];
 			pubDate = nhl.getReadableVideoPublishedDate(aVideo.pubDate);
 			duration = nhl.getReadableVideoDuration(aVideo.duration);
-			jQuery('#' + containerId + ' ul').append(
-				'<li rel="' + aVideo.id + '">' +
-					'<img src="' + aVideo.canvas + '" border="0" />' +
-					'<h3>' + aVideo.title + '&nbsp;<span>(' + duration + ' ' + pubDate + ')</span></h3>' + 
+			jQuery(containerId).append(
+				'<li rel="' + aVideo.id + '" class="thumbContainer">' +
+					'<img src="' + aVideo.canvas + '" class="thumb" border="0" />' +
+					'<div class="thumbTray">' +
+					'<h4>' + aVideo.title + '</h4>' +
+					'<p>' + duration + ' | ' + pubDate + '</p>' + 
+					'<div class="share"><img title="Share this video"  src="share-icon.png" /><img src="favorite-icon.png" title="Add to my favorites" /></div>' + 
+					'</div>' +
 				'</li>'					
 			);
 		}
 		
 		// bind click events	
-		jQuery('#' + containerId + ' ul li').unbind();
-		jQuery('#' + containerId + ' ul li').each(function(index) {
+		jQuery(containerId + ' li').unbind();
+		jQuery(containerId + ' li').each(function(index) {
 			jQuery(this).on("click", function(){
 				var vidId = jQuery(this).attr('rel');
 				var aVideo = VideoPrototype.videoFromPlaylistWithId(aPlaylist, vidId);
 				VideoPrototype.play(aVideo);
 		    });
 		});
+		
+		// bind hover state to elements
+        jQuery(containerId + ' .thumbContainer').hover(
+            function () {
+              jQuery(this).find('.thumbTray').animate({marginBottom: 0, opacity: 0.85}, 200);
+            }, 
+            function () {
+              jQuery(this).find('.thumbTray').animate({marginBottom: -20, opacity: 0.7}, 200);
+            }
+        );      
 	},
 	videoFromPlaylistWithId: function(playlist, id) {
 		var aVideo = null;
